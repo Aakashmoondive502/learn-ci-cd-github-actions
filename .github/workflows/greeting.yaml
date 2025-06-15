@@ -4,8 +4,14 @@ name: Greeting
 # Also we can add [] inside array to add multiple events
 on: push
 jobs:
+  # This is first job, which run on ubuntu-latest
   greet:
     runs-on: ubuntu-latest
+    # steps is an array of steps that will be executed in the job
     steps:
+      # This is first step, which will be executed in the job
       - name: "greet user"
         run: echo "Hello, world!"
+      # This is second step, which will be executed in the job
+      - name: "greet operating system"
+        run: echo "Hello, Operating System!"
