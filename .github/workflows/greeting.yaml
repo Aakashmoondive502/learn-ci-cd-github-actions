@@ -1,0 +1,11 @@
+name: Greeting
+
+# push is the event that triggers the workflow ,
+# Also we can add [] inside array to add multiple events
+on: push
+jobs:
+  greet:
+    runs-on: ubuntu-latest
+    steps:
+      - name: "greet user"
+        run: echo "Hello, world!"
