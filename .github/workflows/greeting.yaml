@@ -3,7 +3,10 @@ name: Greeting
 # push is the event that triggers the workflow ,
 # Also we can add [] inside array to add multiple events
 
-on: push
+# on: push
+# because we want to manually trigger the workflow , it will not run on push event
+on: workflow_dispatch
+
 jobs:
   # This is first job, which run on ubuntu-latest
   greet:
