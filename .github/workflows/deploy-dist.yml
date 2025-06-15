@@ -37,10 +37,25 @@ jobs:
 
       - name: Print NODE Version
         run: node -v
+      #  when dependencies install npm will create a cache file in the path ~/.npm with a unique key
+      #  so that next time when we run the workflow it will not install the dependencies again
+      - name: Cache Dependencies
+        uses: actions/cache@v4
+        with:
+          path: ~/.npm
+          # How cache uniqe key is generated ?
+          # 1. runner.os -> it will give the os of the runner
+          # 2. node-version -> it will give the node version of the runner
+          # 3. hashFiles('**/package-lock.json') -> it will give the hash of the package-lock.json file
+          # 4. ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }} -> it will give the unique key for the cache
+          # And once any new dependency is added it will create a new cache file with a new key , and delete the old cache file , because it's uniqueness is based on package-lock.json file
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+
       - name: Install Dependencies
         run: npm ci
         #   ci read dependencies from package-lock.json , hence it donload exact verison of the dependencies , but package contains ^ which means it install latest version of dependencies
         # run: npm install -> this read package.json to install the dependencies ,Basically it update 18.2.9 (2.9) not use 19 version either available or not
+
       - name: Run Tests
         run: npm run test
 
@@ -67,6 +82,18 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: 20
+      - name: Cache Dependencies
+        uses: actions/cache@v4
+        with:
+          path: ~/.npm
+          # How cache uniqe key is generated ?
+          # 1. runner.os -> it will give the os of the runner
+          # 2. node-version -> it will give the node version of the runner
+          # 3. hashFiles('**/package-lock.json') -> it will give the hash of the package-lock.json file
+          # 4. ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }} -> it will give the unique key for the cache
+          # And once any new dependency is added it will create a new cache file with a new key , and delete the old cache file , because it's uniqueness is based on package-lock.json file
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+
       - name: Install Dependencies
         run: npm ci
         #   ci read dependencies from package-lock.json , hence it donload exact verison of the dependencies , but package contains ^ which means it install latest version of dependencies
