@@ -65,10 +65,7 @@ jobs:
       - name: Run Tests
         run: npm run test
 
-  deploy-job:
-    # This will run only if test-job is successful , otherwise it will not run
-    # With this we can make it dependent on other job
-    # Also we can make it sequential , means it will run only if previous job is successful
+  build:
     needs: test-job
     runs-on: ubuntu-latest
     steps:
@@ -106,5 +103,23 @@ jobs:
         # run: npm install -> this read package.json to install the dependencies ,Basically it update 18.2.9 (2.9) not use 19 version either available or not
       - name: Build Project
         run: npm run build
+      - name: Upload This Artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: dist-files
+          path: dist
+
+  deploy-job:
+    # This will run only if test-job is successful , otherwise it will not run
+    # With this we can make it dependent on other job
+    # Also we can make it sequential , means it will run only if previous job is successful
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Download This Artifacts
+        uses: actions/download-artifact@v4
+        with:
+          name: dist-files
+          path: dist/
       - name: Deploy Project
         run: echo "Deploy Successfully"

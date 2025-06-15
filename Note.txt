@@ -1,5 +1,14 @@
 This is how we skip workflow for particular commit or branch 
 git commit -m "add-comments and console.logs [skip ci] "
 
+------------------------------------------------------------------------
 
 When we install any dependency it will create a  cache file , 
+
+------------------------------------------------------------------------
+
+In Automation process if any file generate which is called artifacts
+Or 
+Any asset generate in automation process called artifacts 
+
+so we can download this artifact in next job
