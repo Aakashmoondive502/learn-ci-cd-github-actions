@@ -1,0 +1,2 @@
+This is how we skip workflow for particular commit or branch 
+git commit -m "add-comments and console.logs [skip ci] "
