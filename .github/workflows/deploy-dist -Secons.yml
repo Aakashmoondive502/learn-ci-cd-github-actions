@@ -1,4 +1,4 @@
-name: Deploy Dist
+name: Deploy Dist - Second
 
 # push is the event that triggers the workflow ,
 # Also we can add [] inside array to add multiple events
@@ -9,8 +9,14 @@ name: Deploy Dist
 
 # 2nd syntax
 on:
-  # - push
-  - workflow_dispatch
+  push:
+    branches:
+      - main
+      - "feature/**"
+    paths-ignore:
+      - ".github/workflows/*"
+      - "README.md"
+  workflow_dispatch:
 
 jobs:
   # This is first job, which run on ubuntu-latest
