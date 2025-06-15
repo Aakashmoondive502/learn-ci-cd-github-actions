@@ -2,7 +2,6 @@ name: Deploy Dist
 
 # push is the event that triggers the workflow ,
 # Also we can add [] inside array to add multiple events
-
 # Now i want to manually trigger the workflow , basically i want to create a button in github actions to trigger the workflow
 
 # 1st syntax
@@ -29,4 +28,3 @@ jobs:
           git clone https://github.com/${{github.repository}}.git
         # By-default we have reserved context variables of the job in the workflow file, which we can use to access the job's context
 
-        
