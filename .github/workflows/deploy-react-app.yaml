@@ -6,7 +6,7 @@ on:
       - main
       - "feature/**"
     paths-ignore:
-    #   - ".github/workflows/*"
+      #   - ".github/workflows/*"
       - "README.md"
   workflow_dispatch:
 
@@ -72,9 +72,8 @@ jobs:
     # because of this tep we'll get output
     steps:
       - name: See GitHub_Token
-        run: echo ${{ secrets.GITHUB_TOKEN }}
+        run: echo "GitHub_Token -  ${{ secrets.GITHUB_TOKEN }}"
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
-        with:
-            token:${{ secrets.GITHUB_TOKEN }}
+        with: token:${{ secrets.GITHUB_TOKEN }}
