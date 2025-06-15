@@ -1,0 +1,30 @@
+name: Deploy Dist
+
+# push is the event that triggers the workflow ,
+# Also we can add [] inside array to add multiple events
+
+# Now i want to manually trigger the workflow , basically i want to create a button in github actions to trigger the workflow
+
+# 1st syntax
+# on: [push, workflow_dispatch]
+
+# 2nd syntax
+on:
+  - push
+  - workflow_dispatch
+
+jobs:
+  # This is first job, which run on ubuntu-latest
+  test-job:
+    runs-on: ubuntu-latest
+    # steps is an array of steps that will be executed in the job
+    steps:
+      # This is first step, which will be executed in the job
+      - name: Get Code
+        # If i need to run multiple steps in a job , i use to use | operator
+        run: |
+          echo "Cloning the Repository"
+          echo "${{toJson(github)}}"
+          echo "${{toJson(github.repository )}}"
+          git clone https://github.com/${{github.repository}}.git
+        # By-default we have reserved context variables of the job in the workflow file, which we can use to access the job's context
