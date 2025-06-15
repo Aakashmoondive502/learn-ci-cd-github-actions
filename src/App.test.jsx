@@ -11,7 +11,7 @@ test('renders Github Actions heading', () => {
 
 test('contains an h1 element', () => {
   const { container } = render(<App />);
-  const h1Element = container.querySelector('h4');
+  const h1Element = container.querySelector('h1');
   expect(h1Element).toBeInTheDocument();
 });
 
