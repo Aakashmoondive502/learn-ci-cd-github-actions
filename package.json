@@ -3,6 +3,7 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
+  "homepage": "https://aak172003.github.io/Learn-GitHub-CI-CD-Actions",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
