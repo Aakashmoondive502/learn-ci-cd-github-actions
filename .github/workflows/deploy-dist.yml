@@ -20,11 +20,26 @@ jobs:
     steps:
       # This is first step, which will be executed in the job
       - name: Get Code
+        uses: actions/checkout@v4
         # If i need to run multiple steps in a job , i use to use | operator
-        run: |
-          echo "Cloning the Repository"
-          echo "${{toJson(github)}}"
-          echo "${{toJson(github.repository )}}"
-          git clone https://github.com/${{github.repository}}.git
+        # run multiple command in a single step
+        # run: |
+        #   echo "Cloning the Repository"
+        #   echo "${{toJson(github)}}"
+        #   echo "${{toJson(github.repository )}}"
+        #   git clone https://github.com/${{github.repository}}.git
         # By-default we have reserved context variables of the job in the workflow file, which we can use to access the job's context
+        # These all are exposed context variables of the job in the workflow file, which we can use to access the job's context
+      - name: Install Node 20
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
 
+      - name: Print NODE Version
+        run: node -v
+      - name: Install Dependencies
+        run: npm ci
+        #   ci read dependencies from package-lock.json , hence it donload exact verison of the dependencies , but package contains ^ which means it install latest version of dependencies
+        # run: npm install -> this read package.json to install the dependencies ,Basically it update 18.2.9 (2.9) not use 19 version either available or not
+      - name: Run Tests
+        run: npm run test
