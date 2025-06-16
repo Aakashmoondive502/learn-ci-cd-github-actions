@@ -1,17 +1,17 @@
 name: Deploy React App to GitHub Pages
 
 on:
-#   push:
-#     branches:
-#       - main
-#       - "feature/**"
-#     paths-ignore:
-#       #   - ".github/workflows/*"
-#       - "README.md"
+  push:
+    branches:
+      - main
+      - "feature/**"
+    paths-ignore:
+      - ".github/workflows/*"
+      - "README.md"
   workflow_dispatch:
 
 jobs:
-  # This is first job, which run on ubuntu-latest
+  # This is first job, which runs on ubuntu-latest
   test-job:
     runs-on: ubuntu-latest
     steps:
@@ -50,7 +50,7 @@ jobs:
         run: npm ci
       - name: Build Project
         run: npm run build
-      - name: Upload This Artifacts
+      - name: Upload This Artifact
         uses: actions/upload-pages-artifact@v3
         with:
           name: github-pages
@@ -62,16 +62,13 @@ jobs:
     permissions:
       pages: write
       id-token: write
-    # Deploy to the github-pages environment
+    # Deploy to the GitHub Pages environment
     environment:
       name: github-pages
-      # This is the url of the deployed page
+      # This is the URL of the deployed page
       url: ${{ steps.deployment.outputs.page_url }}
-    # Specify runner + deployment step
-
-    # because of this tep we'll get output
     steps:
-      - name: See GitHub_Token
+      - name: See GitHub Token
         run: echo "GitHub_Token -  ${{ secrets.GITHUB_TOKEN }}"
       - name: Deploy to GitHub Pages
         id: deployment
