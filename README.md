@@ -1,10 +1,10 @@
-# LEARN-CI-CD-GITHUB-ACTIONS
+# Learn CI/CD GitHub Actions Workflows
 
 _Accelerate Innovation, Automate Success Seamlessly_
 
-![GitHub last commit](https://img.shields.io/github/last-commit/username/repo-name)
-![GitHub repo size](https://img.shields.io/github/repo-size/username/repo-name)
-![GitHub license](https://img.shields.io/github/license/username/repo-name)
+![GitHub last commit](https://img.shields.io/github/last-commit/Aakashmoondive502/learn-ci-cd-github-actions)
+![GitHub repo size](https://img.shields.io/github/repo-size/Aakashmoondive502/learn-ci-cd-github-actions)
+![GitHub license](https://img.shields.io/github/license/Aakashmoondive502/learn-ci-cd-github-actions)
 
 _Built with the tools and technologies:_
 
@@ -62,7 +62,7 @@ Build the `learn-ci-cd-github-actions` from the source and install dependencies:
 1. Clone the repository:
 
     ```bash
-    git clone https://github.com/yourusername/learn-ci-cd-github-actions
+    git clone https://github.com/Aakashmoondive502/learn-ci-cd-github-actions
     ```
 
 2. Navigate to the project directory:
@@ -80,12 +80,3 @@ Build the `learn-ci-cd-github-actions` from the source and install dependencies:
     ```
 
 ---
-
-## Usage
-
-Run the project with:
-
-Using **npm**:
-
-```bash
-npm start
