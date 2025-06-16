@@ -1,0 +1,26 @@
+name: Sonar Cloud Scan
+on:
+  push:
+    branches:
+      - main
+      # This is activity type of the workflow, which is used to trigger the workflow
+  pull_request:
+    # opened -> when a PR is opened
+    # synchronize -> when a PR is updated
+    # reopened -> when a PR is reopened
+    types: [opened, synchronize, reopened]
+jobs:
+  sonarqube:
+    name: SonarQube
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0 # Shallow clones should be disabled for a better relevancy of analysis
+      - name: SonarQube Scan
+        uses: SonarSource/sonarqube-scan-action@v5
+        env:
+          # whenwver our workflow run , github automatically create a token for us which is called GITHUB_TOKEN
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          # this is the token for sonar cloud , which is fetched by github secrets variables
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
